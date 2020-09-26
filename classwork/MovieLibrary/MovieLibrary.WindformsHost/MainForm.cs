@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;        //DO NOT DELETE
 using System.Windows.Forms;
+
+//Hierarchical namespaces
+//namespace MovieLibrary
+//{
+//    namespace WindformsHost
+//    {
+//    }
+//}
+//namespace Company.Product.<area>
+//namespace Microsoft.Office.Word
+//    namespace Microsoft.Office.Excel
 
 namespace MovieLibrary.WindformsHost
 {
@@ -15,7 +19,15 @@ namespace MovieLibrary.WindformsHost
         public MainForm()
         {
             InitializeComponent();
+
+            Movie movie;
         }
 
     }
 }
+//namespace OtherNamesspace
+//{
+//    public class MainForm
+//    {
+//    }
+//}
