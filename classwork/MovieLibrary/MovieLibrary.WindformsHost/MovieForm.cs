@@ -15,28 +15,46 @@ namespace MovieLibrary.WindformsHost
             InitializeComponent();
         }
 
-        private void bindingSource1_CurrentChanged ( object sender, EventArgs e )
+        // Method - function inside a class
+        private void OnCancel ( object sender, EventArgs e )
         {
-
+            Close();
         }
 
-        private void tableLayoutPanel1_Paint ( object sender, PaintEventArgs e )
+        private void OnSave ( object sender, EventArgs e )
         {
+            var movie = new Movie();
+            movie.Name = _txtName.Text;
+            movie.Description = _txtDescription.Text;
+            movie.Rating = _comboRating.SelectedText;
+            movie.IsClassic = _chkClassic.Checked;
 
+            movie.RunLength = ReadAsInt32(_txtRunLength);
+            movie.ReleaseYear = ReadAsInt32(_txtReleaseYear);
+
+            //TOOO Fix Validation
+            var error = movie.Validate();
+            if (!String.IsNullOrEmpty(error))
+            {
+                //Show error message - use for standard message
+                MessageBox.Show(this, error, "save Failed" , MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DialogResult = DialogResult.None;
+                return;
+
+            };
+
+            //TOOO Return movie
+            Close();
         }
 
-        private void MovieForm_Load ( object sender, EventArgs e )
+        private int ReadAsInt32(Control control)
         {
+            var text = control.Text;
 
-        }
+            if (Int32.TryParse(text, out var result))
+                return result;
 
-        private void button2_Click ( object sender, EventArgs e )
-        {
-
-        }
-
-        private void _txtDescription_TextChanged ( object sender, EventArgs e )
-        {
+            return -1;
 
         }
     }

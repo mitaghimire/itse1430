@@ -1,4 +1,6 @@
-﻿namespace MovieLibrary.WindformsHost
+﻿using System;
+
+namespace MovieLibrary.WindformsHost
 {
     partial class MovieForm
     {
@@ -33,12 +35,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this._txtRunlength = new System.Windows.Forms.TextBox();
+            this._txtRunLength = new System.Windows.Forms.TextBox();
             this._btnCancel = new System.Windows.Forms.Button();
             this._btnSave = new System.Windows.Forms.Button();
             this._chkClassic = new System.Windows.Forms.CheckBox();
             this._comboRating = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this._txtReleaseYear = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // _txtName
@@ -55,7 +59,6 @@
             this._txtDescription.Name = "_txtDescription";
             this._txtDescription.Size = new System.Drawing.Size(240, 100);
             this._txtDescription.TabIndex = 1;
-            this._txtDescription.TextChanged += new System.EventHandler(this._txtDescription_TextChanged);
             // 
             // label1
             // 
@@ -84,31 +87,33 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Run Length";
             // 
-            // _txtRunlength
+            // _txtRunLength
             // 
-            this._txtRunlength.Location = new System.Drawing.Point(240, 239);
-            this._txtRunlength.Name = "_txtRunlength";
-            this._txtRunlength.Size = new System.Drawing.Size(96, 27);
-            this._txtRunlength.TabIndex = 5;
+            this._txtRunLength.Location = new System.Drawing.Point(240, 239);
+            this._txtRunLength.Name = "_txtRunLength";
+            this._txtRunLength.Size = new System.Drawing.Size(96, 27);
+            this._txtRunLength.TabIndex = 5;
             // 
             // _btnCancel
             // 
+            this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btnCancel.Location = new System.Drawing.Point(607, 440);
             this._btnCancel.Name = "_btnCancel";
             this._btnCancel.Size = new System.Drawing.Size(94, 29);
             this._btnCancel.TabIndex = 6;
             this._btnCancel.Text = "Cancel";
             this._btnCancel.UseVisualStyleBackColor = true;
+            this._btnCancel.Click += new System.EventHandler(this.OnCancel);
             // 
             // _btnSave
             // 
+            this._btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._btnSave.Location = new System.Drawing.Point(473, 440);
             this._btnSave.Name = "_btnSave";
             this._btnSave.Size = new System.Drawing.Size(110, 29);
             this._btnSave.TabIndex = 7;
             this._btnSave.Text = "Save";
             this._btnSave.UseVisualStyleBackColor = true;
-            this._btnSave.Click += new System.EventHandler(this.button2_Click);
             // 
             // _chkClassic
             // 
@@ -143,17 +148,37 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Rating";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(61, 431);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(92, 20);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Release Year";
+            // 
+            // _txtReleaseYear
+            // 
+            this._txtReleaseYear.Location = new System.Drawing.Point(240, 431);
+            this._txtReleaseYear.Name = "_txtReleaseYear";
+            this._txtReleaseYear.Size = new System.Drawing.Size(125, 27);
+            this._txtReleaseYear.TabIndex = 12;
+            this._txtReleaseYear.Text = "1900";
+            // 
             // MovieForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this._btnCancel;
             this.ClientSize = new System.Drawing.Size(755, 500);
+            this.Controls.Add(this._txtReleaseYear);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this._comboRating);
             this.Controls.Add(this._chkClassic);
             this.Controls.Add(this._btnSave);
             this.Controls.Add(this._btnCancel);
-            this.Controls.Add(this._txtRunlength);
+            this.Controls.Add(this._txtRunLength);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -165,11 +190,20 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "Add Movie";
-            this.Load += new System.EventHandler(this.MovieForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
+
+        //private void MovieForm_Load ( object sender, EventArgs e )
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //private void button2_Click ( object sender, EventArgs e )
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         #endregion
 
@@ -178,11 +212,16 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox _txtRunlength;
+        private System.Windows.Forms.TextBox _txtRunLength;
         private System.Windows.Forms.Button _btnCancel;
         private System.Windows.Forms.Button _btnSave;
         private System.Windows.Forms.CheckBox _chkClassic;
         private System.Windows.Forms.ComboBox _comboRating;
         private System.Windows.Forms.Label label4;
+       // private readonly EventHandler _txtDescription_TextChanged;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox _txtReleaseYear;
+
+       // public EventHandler TxtDescription_TextChanged => _txtDescription_TextChanged;
     }
 }
