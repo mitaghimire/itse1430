@@ -114,6 +114,7 @@ namespace MovieLibrary.WindformsHost
             this._btnSave.TabIndex = 7;
             this._btnSave.Text = "Save";
             this._btnSave.UseVisualStyleBackColor = true;
+            this._btnSave.Click += new System.EventHandler(this.OnSave);
             // 
             // _chkClassic
             // 
