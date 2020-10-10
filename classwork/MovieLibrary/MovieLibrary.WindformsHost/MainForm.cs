@@ -77,6 +77,10 @@ namespace MovieLibrary.WindformsHost
             //TOOO: Delete movie
         }
 
+        private void MainForm_Load ( object sender, EventArgs e )
+        {
+
+        }
     }
 }
 //namespace OtherNamesspace

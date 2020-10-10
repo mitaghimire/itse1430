@@ -172,7 +172,7 @@ namespace MovieLibrary
                 return "Name is require";
 
             //Run lenght must be >= 0
-            if (RunLength < 0)
+            if (RunLength <= 0)
                 return "Run Length must be greater than or equal to 0";
 
             //Release year must be >= 1900
