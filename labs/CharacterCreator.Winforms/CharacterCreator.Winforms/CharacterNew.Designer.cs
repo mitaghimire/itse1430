@@ -52,7 +52,7 @@
             // btnCharacterSave
             // 
             this.btnCharacterSave.Location = new System.Drawing.Point(29, 280);
-            this.btnCharacterSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCharacterSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnCharacterSave.Name = "btnCharacterSave";
             this.btnCharacterSave.Size = new System.Drawing.Size(90, 27);
             this.btnCharacterSave.TabIndex = 10;
@@ -73,7 +73,7 @@
             // btnCharacterCancel
             // 
             this.btnCharacterCancel.Location = new System.Drawing.Point(152, 280);
-            this.btnCharacterCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCharacterCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCharacterCancel.Name = "btnCharacterCancel";
             this.btnCharacterCancel.Size = new System.Drawing.Size(90, 27);
             this.btnCharacterCancel.TabIndex = 11;
@@ -84,7 +84,7 @@
             // txtCharacterName
             // 
             this.txtCharacterName.Location = new System.Drawing.Point(126, 18);
-            this.txtCharacterName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCharacterName.Margin = new System.Windows.Forms.Padding(2);
             this.txtCharacterName.Name = "txtCharacterName";
             this.txtCharacterName.Size = new System.Drawing.Size(197, 27);
             this.txtCharacterName.TabIndex = 1;
@@ -103,7 +103,7 @@
             // 
             this.cbProfession.FormattingEnabled = true;
             this.cbProfession.Location = new System.Drawing.Point(126, 67);
-            this.cbProfession.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbProfession.Margin = new System.Windows.Forms.Padding(2);
             this.cbProfession.Name = "cbProfession";
             this.cbProfession.Size = new System.Drawing.Size(197, 28);
             this.cbProfession.TabIndex = 2;
@@ -142,7 +142,7 @@
             // 
             this.cbRace.FormattingEnabled = true;
             this.cbRace.Location = new System.Drawing.Point(126, 122);
-            this.cbRace.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbRace.Margin = new System.Windows.Forms.Padding(2);
             this.cbRace.Name = "cbRace";
             this.cbRace.Size = new System.Drawing.Size(197, 28);
             this.cbRace.TabIndex = 3;
@@ -150,7 +150,7 @@
             // txtStrength
             // 
             this.txtStrength.Location = new System.Drawing.Point(126, 170);
-            this.txtStrength.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtStrength.Margin = new System.Windows.Forms.Padding(2);
             this.txtStrength.MaxLength = 3;
             this.txtStrength.Name = "txtStrength";
             this.txtStrength.PlaceholderText = "Strength";
@@ -160,7 +160,7 @@
             // txtIntelligent
             // 
             this.txtIntelligent.Location = new System.Drawing.Point(227, 170);
-            this.txtIntelligent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtIntelligent.Margin = new System.Windows.Forms.Padding(2);
             this.txtIntelligent.MaxLength = 3;
             this.txtIntelligent.Name = "txtIntelligent";
             this.txtIntelligent.PlaceholderText = "Intelligent";
@@ -170,7 +170,7 @@
             // txtAgility
             // 
             this.txtAgility.Location = new System.Drawing.Point(340, 170);
-            this.txtAgility.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtAgility.Margin = new System.Windows.Forms.Padding(2);
             this.txtAgility.MaxLength = 3;
             this.txtAgility.Name = "txtAgility";
             this.txtAgility.PlaceholderText = "Agility";
@@ -180,7 +180,7 @@
             // txtConstitution
             // 
             this.txtConstitution.Location = new System.Drawing.Point(449, 170);
-            this.txtConstitution.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtConstitution.Margin = new System.Windows.Forms.Padding(2);
             this.txtConstitution.MaxLength = 3;
             this.txtConstitution.Name = "txtConstitution";
             this.txtConstitution.PlaceholderText = "Constitution";
@@ -190,7 +190,7 @@
             // txtCharisma
             // 
             this.txtCharisma.Location = new System.Drawing.Point(550, 170);
-            this.txtCharisma.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCharisma.Margin = new System.Windows.Forms.Padding(2);
             this.txtCharisma.MaxLength = 3;
             this.txtCharisma.Name = "txtCharisma";
             this.txtCharisma.PlaceholderText = "Charisma";
@@ -200,7 +200,7 @@
             // txtDescription
             // 
             this.txtDescription.Location = new System.Drawing.Point(126, 218);
-            this.txtDescription.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtDescription.Margin = new System.Windows.Forms.Padding(2);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(197, 27);
             this.txtDescription.TabIndex = 9;
@@ -231,7 +231,7 @@
             this.Controls.Add(this.btnCharacterCancel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCharacterSave);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CharacterNew";

@@ -8,11 +8,64 @@ using System.Windows.Forms;
 
 namespace MovieLibrary.WindformsHost
 {
+    // class -declaration :: = [acess ] [modifires] class identifier [: T ]
     public partial class MovieForm : Form
     {
-        public MovieForm ()
+        //Access
+        //Public - accessible is derived type
+        // protected - accessible in owing type and derived types
+        // private - only owning type
+
+        //Members : properties, methods
+        // Virtual - Base type provides the base implementation but a derived type may override it 
+        // Abstract - Base type defines it but does not implement, derived types must override it
+
+        //Syntax
+        // ctor -declaration :: = [acess] T () { S* }
+        // Can call base constructor if needed, base defult constructor called if not specified
+        public MovieForm () :base()// : base()
         {
+            //DO NOT CALL virtual members inside of constructors
             InitializeComponent();
+        }
+
+        public MovieForm ( Movie movie ) : this(movie, null)
+        {
+            //Constructor chaining eliminates need for this dup initialization
+            //Movie = movie;
+        }
+
+        //Constructor chaning - calling one constructor from another
+        public MovieForm ( Movie movie, string title ) : this()
+              
+        {
+            //InitializeComponent();
+            Movie = movie;
+            Text = title ?? "Add Movie'";
+        }
+
+        //properties can be virtual if needed but generally does not make sense
+        public virtual Movie Movie { get; set; }
+
+        //public virtual void OnLoad ( EventArgs e ) {}
+        //Override indicates to compiler that you are overriding a virtual method
+        protected override void OnLoad ( EventArgs e )
+        {
+            //Call the base member
+            //this.OnLoad(e);
+            base.OnLoad(e);
+
+            if (Movie != null)
+
+            {
+                _txtName.Text = Movie.Name;
+                _txtDescription.Text = Movie.Description;
+                _comboRating.SelectedText = Movie.Rating;
+                _chkClassic.Checked = Movie.IsClassic;
+                _txtRunLength.Text = Movie.RunLength.ToString();
+                _txtReleaseYear.Text = Movie.ReleaseYear.ToString();
+
+            };
         }
 
         // Method - function inside a class
@@ -63,7 +116,8 @@ namespace MovieLibrary.WindformsHost
 
             };
 
-            //TOOO Return movie
+            // Return movie
+            Movie = movie;
             Close();
         }
 
@@ -75,6 +129,11 @@ namespace MovieLibrary.WindformsHost
                 return result;
 
             return -1;
+
+        }
+
+        private void MovieForm_Load ( object sender, EventArgs e )
+        {
 
         }
     }

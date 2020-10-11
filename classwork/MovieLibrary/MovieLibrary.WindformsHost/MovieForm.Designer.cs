@@ -191,6 +191,7 @@ namespace MovieLibrary.WindformsHost
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "Add Movie";
+            this.Load += new System.EventHandler(this.MovieForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

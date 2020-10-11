@@ -18,6 +18,7 @@ namespace MovieLibrary.WindformsHost
     {
         public MainForm()
         {
+            
             InitializeComponent();
 
             // Types - Movie
@@ -44,6 +45,7 @@ namespace MovieLibrary.WindformsHost
         }
 
         //Event - a notification to interested parties that something has happened
+        private Movie _movie;
 
         private void OnMovieAdd (object sender, EventArgs e)
         {
@@ -56,15 +58,18 @@ namespace MovieLibrary.WindformsHost
                 return;
 
             // After form is gone
-
             //TOOO: Save movie
+            _movie = form.Movie;
+
             MessageBox.Show("Save successful");
 
         }
 
         private void OnMovieDelete ( object sender, EventArgs e)
         {
-            //TOO: Verify movie exists
+            // Verify movie exists
+            if (_movie == null)
+                return;
 
             //DialogResult
            switch (MessageBox.Show(this, "Are you sure you want to delete?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
@@ -75,8 +80,33 @@ namespace MovieLibrary.WindformsHost
             };
 
             //TOOO: Delete movie
+            _movie = null;
         }
 
+        private void OnMovieEdit ( object sender, EventArgs e )
+        {
+            if (_movie == null)
+                return;
+
+            //object creation
+            // 1. Allocate memory from instance, zero initialized
+            // 2. Initialize fields
+            // 3. Constructor (finish initialization)
+            // 4. Return new instance
+            var form = new MovieForm();
+            form.Movie = _movie;
+            
+            var result = form.ShowDialog(this);  //Block until is dismissed
+            if (result == DialogResult.Cancel)
+                return;
+
+            
+            //TOOO: Update movie
+            _movie = form.Movie;
+
+            MessageBox.Show("Save successful");
+
+        }
         private void MainForm_Load ( object sender, EventArgs e )
         {
 
