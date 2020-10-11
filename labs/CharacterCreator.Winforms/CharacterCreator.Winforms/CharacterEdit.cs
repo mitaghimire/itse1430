@@ -39,7 +39,7 @@ namespace CharacterCreator.Winforms
                 IList<ValidationResult> errors1 = new List<ValidationResult>();
                 Validator.TryValidateObject(attr, context1, errors1, true);
 
-                Character updateCharacter = CharacterService.CreateCharacter(txtCharacterName.Text, (ProfessionEnum)Enum.Parse(typeof(ProfessionEnum), cbProfession.SelectedItem.ToString()), (RaceEnum)Enum.Parse(typeof(RaceEnum), cbRace.SelectedValue.ToString()), attr, txtDescription.Text);
+                Character updateCharacter = CharacterService.CreateCharacter(txtCharacterName.Text, cbProfession?.SelectedItem.ToString(), cbRace?.SelectedItem.ToString(), attr, txtDescription.Text);
 
 
                 ValidationContext context = new ValidationContext(updateCharacter, null, null);
@@ -53,6 +53,10 @@ namespace CharacterCreator.Winforms
                     {
                         if (result.MemberNames.Contains("Name"))
                             errCharacterNew.SetError(txtCharacterName, result.ErrorMessage);
+                        if (result.MemberNames.Contains("Profession")) 
+                            errCharacterNew.SetError(cbProfession, result.ErrorMessage);
+                        if (result.MemberNames.Contains("Race"))
+                            errCharacterNew.SetError(cbRace, result.ErrorMessage);
                         if (result.MemberNames.Contains("Strength"))
                             errCharacterNew.SetError(txtStrength, result.ErrorMessage);
                         if (result.MemberNames.Contains("Agility"))
@@ -106,21 +110,6 @@ namespace CharacterCreator.Winforms
         private void CharacterEdit_Load(object sender, EventArgs e)
         {
             
-
-            cbProfession.DataSource = Enum.GetValues(typeof(ProfessionEnum));
-
-            cbRace.DisplayMember = "Description";
-            cbRace.ValueMember = "Value";
-            cbRace.DataSource = Enum.GetValues(typeof(RaceEnum))
-                .Cast<Enum>()
-                .Select(value => new
-                {
-                    (Attribute.GetCustomAttribute(value.GetType().GetField(value.ToString()), typeof(DescriptionAttribute)) as DescriptionAttribute).Description,
-                    value
-                })
-                .OrderBy(item => item.value)
-                .ToList();
-
             BindData();
 
         }
@@ -129,7 +118,7 @@ namespace CharacterCreator.Winforms
         {
             txtCharacterName.Text = EditCharacter.Name;
             cbProfession.SelectedItem = EditCharacter.Profession;
-            cbRace.SelectedValue = EditCharacter.Race;
+            cbRace.SelectedItem = EditCharacter.Race;
             txtAgility.Text = EditCharacter.Attributes.Agility;
             txtCharisma.Text = EditCharacter.Attributes.Charisma;
             txtConstitution.Text = EditCharacter.Attributes.Constitution;

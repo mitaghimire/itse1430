@@ -25,7 +25,7 @@ namespace CharacterCreator
             lstCharacter.Remove(delCharacter);
         }
 
-        public static Character CreateCharacter(string name, ProfessionEnum profession, RaceEnum race, Attributes attribute, string description)
+        public static Character CreateCharacter(string name, string profession, string race, Attributes attribute, string description)
         {
             Character chr = new Character();
             chr.Name = name;
@@ -34,7 +34,7 @@ namespace CharacterCreator
             chr.Attributes = attribute;
             chr.Description = description;
             return chr;
-        }
+         }
 
     }
 }

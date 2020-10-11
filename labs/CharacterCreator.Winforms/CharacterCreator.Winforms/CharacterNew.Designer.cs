@@ -102,6 +102,12 @@
             // cbProfession
             // 
             this.cbProfession.FormattingEnabled = true;
+            this.cbProfession.Items.AddRange(new object[] {
+            "Fighter",
+            "Hunter",
+            "Priest",
+            "Rogue",
+            "Wizard"});
             this.cbProfession.Location = new System.Drawing.Point(126, 67);
             this.cbProfession.Margin = new System.Windows.Forms.Padding(2);
             this.cbProfession.Name = "cbProfession";
@@ -141,6 +147,12 @@
             // cbRace
             // 
             this.cbRace.FormattingEnabled = true;
+            this.cbRace.Items.AddRange(new object[] {
+            "Dwarf",
+            "Elf",
+            "Gnome",
+            "Half Elf",
+            " Human"});
             this.cbRace.Location = new System.Drawing.Point(126, 122);
             this.cbRace.Margin = new System.Windows.Forms.Padding(2);
             this.cbRace.Name = "cbRace";

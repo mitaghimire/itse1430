@@ -18,10 +18,10 @@ namespace CharacterCreator
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Profession is Required!")]
-        public ProfessionEnum Profession { get; set; }
+        public string Profession { get; set; }
 
         [Required(ErrorMessage = "Race is Required!")]
-        public RaceEnum Race { get; set; }
+        public string Race { get; set; }
 
         [Required(ErrorMessage = "Attribute is Required!")]
         
@@ -30,28 +30,8 @@ namespace CharacterCreator
         public string Description { get; set; }
     }
 
-    public enum ProfessionEnum
-    {
-        Fighter,
-        Hunter,
-        Priest,
-        Rogue,
-        Wizard
-    }
 
-    public enum RaceEnum
-    {
-        [Description("Dwarf")]
-        Dwarf,
-        [Description("Elf")]
-        Elf,
-        [Description("Gnome")]
-        Gnome,
-        [Description("Half Elf")]
-        HalfElf ,
-        [Description("Human")]
-        Human
-    }
+ 
 
     
     public class Attributes

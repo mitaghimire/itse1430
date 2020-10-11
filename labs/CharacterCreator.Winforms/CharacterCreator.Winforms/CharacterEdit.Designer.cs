@@ -51,9 +51,10 @@
             // 
             // btnCharacterSave
             // 
-            this.btnCharacterSave.Location = new System.Drawing.Point(36, 350);
+            this.btnCharacterSave.Location = new System.Drawing.Point(29, 280);
+            this.btnCharacterSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnCharacterSave.Name = "btnCharacterSave";
-            this.btnCharacterSave.Size = new System.Drawing.Size(112, 34);
+            this.btnCharacterSave.Size = new System.Drawing.Size(90, 27);
             this.btnCharacterSave.TabIndex = 10;
             this.btnCharacterSave.Text = "Save";
             this.btnCharacterSave.UseVisualStyleBackColor = true;
@@ -62,17 +63,19 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(36, 28);
+            this.label1.Location = new System.Drawing.Point(29, 22);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 25);
+            this.label1.Size = new System.Drawing.Size(49, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "Name";
             // 
             // btnCharacterCancel
             // 
-            this.btnCharacterCancel.Location = new System.Drawing.Point(190, 350);
+            this.btnCharacterCancel.Location = new System.Drawing.Point(152, 280);
+            this.btnCharacterCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCharacterCancel.Name = "btnCharacterCancel";
-            this.btnCharacterCancel.Size = new System.Drawing.Size(112, 34);
+            this.btnCharacterCancel.Size = new System.Drawing.Size(90, 27);
             this.btnCharacterCancel.TabIndex = 11;
             this.btnCharacterCancel.Text = "Cancel";
             this.btnCharacterCancel.UseVisualStyleBackColor = true;
@@ -80,113 +83,138 @@
             // 
             // txtCharacterName
             // 
-            this.txtCharacterName.Location = new System.Drawing.Point(158, 22);
+            this.txtCharacterName.Location = new System.Drawing.Point(126, 18);
+            this.txtCharacterName.Margin = new System.Windows.Forms.Padding(2);
             this.txtCharacterName.Name = "txtCharacterName";
-            this.txtCharacterName.Size = new System.Drawing.Size(245, 31);
+            this.txtCharacterName.Size = new System.Drawing.Size(197, 27);
             this.txtCharacterName.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(36, 92);
+            this.label2.Location = new System.Drawing.Point(29, 74);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 25);
+            this.label2.Size = new System.Drawing.Size(77, 20);
             this.label2.TabIndex = 1;
             this.label2.Text = "Profession";
             // 
             // cbProfession
             // 
             this.cbProfession.FormattingEnabled = true;
-            this.cbProfession.Location = new System.Drawing.Point(158, 84);
+            this.cbProfession.Items.AddRange(new object[] {
+            "Fighter",
+            "Hunter",
+            "Priest",
+            "Rogue",
+            "Wizard"});
+            this.cbProfession.Location = new System.Drawing.Point(126, 67);
+            this.cbProfession.Margin = new System.Windows.Forms.Padding(2);
             this.cbProfession.Name = "cbProfession";
-            this.cbProfession.Size = new System.Drawing.Size(245, 33);
+            this.cbProfession.Size = new System.Drawing.Size(197, 28);
             this.cbProfession.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(36, 160);
+            this.label3.Location = new System.Drawing.Point(29, 128);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 25);
+            this.label3.Size = new System.Drawing.Size(41, 20);
             this.label3.TabIndex = 1;
             this.label3.Text = "Race";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(36, 219);
+            this.label4.Location = new System.Drawing.Point(29, 175);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(82, 25);
+            this.label4.Size = new System.Drawing.Size(68, 20);
             this.label4.TabIndex = 1;
             this.label4.Text = "Attribute";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(36, 279);
+            this.label5.Location = new System.Drawing.Point(29, 223);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(102, 25);
+            this.label5.Size = new System.Drawing.Size(85, 20);
             this.label5.TabIndex = 1;
             this.label5.Text = "Description";
             // 
             // cbRace
             // 
             this.cbRace.FormattingEnabled = true;
-            this.cbRace.Location = new System.Drawing.Point(158, 152);
+            this.cbRace.Items.AddRange(new object[] {
+            "Dwarf",
+            "Elf",
+            "Gnome",
+            "Half Elf",
+            "Human"});
+            this.cbRace.Location = new System.Drawing.Point(126, 122);
+            this.cbRace.Margin = new System.Windows.Forms.Padding(2);
             this.cbRace.Name = "cbRace";
-            this.cbRace.Size = new System.Drawing.Size(245, 33);
+            this.cbRace.Size = new System.Drawing.Size(197, 28);
             this.cbRace.TabIndex = 3;
             // 
             // txtStrength
             // 
-            this.txtStrength.Location = new System.Drawing.Point(158, 213);
+            this.txtStrength.Location = new System.Drawing.Point(126, 170);
+            this.txtStrength.Margin = new System.Windows.Forms.Padding(2);
             this.txtStrength.MaxLength = 3;
             this.txtStrength.Name = "txtStrength";
             this.txtStrength.PlaceholderText = "Strength";
-            this.txtStrength.Size = new System.Drawing.Size(108, 31);
+            this.txtStrength.Size = new System.Drawing.Size(87, 27);
             this.txtStrength.TabIndex = 4;
             // 
             // txtIntelligent
             // 
-            this.txtIntelligent.Location = new System.Drawing.Point(284, 213);
+            this.txtIntelligent.Location = new System.Drawing.Point(227, 170);
+            this.txtIntelligent.Margin = new System.Windows.Forms.Padding(2);
             this.txtIntelligent.MaxLength = 3;
             this.txtIntelligent.Name = "txtIntelligent";
             this.txtIntelligent.PlaceholderText = "Intelligent";
-            this.txtIntelligent.Size = new System.Drawing.Size(119, 31);
+            this.txtIntelligent.Size = new System.Drawing.Size(96, 27);
             this.txtIntelligent.TabIndex = 5;
             // 
             // txtAgility
             // 
-            this.txtAgility.Location = new System.Drawing.Point(425, 213);
+            this.txtAgility.Location = new System.Drawing.Point(340, 170);
+            this.txtAgility.Margin = new System.Windows.Forms.Padding(2);
             this.txtAgility.MaxLength = 3;
             this.txtAgility.Name = "txtAgility";
             this.txtAgility.PlaceholderText = "Agility";
-            this.txtAgility.Size = new System.Drawing.Size(115, 31);
+            this.txtAgility.Size = new System.Drawing.Size(93, 27);
             this.txtAgility.TabIndex = 6;
             // 
             // txtConstitution
             // 
-            this.txtConstitution.Location = new System.Drawing.Point(561, 213);
+            this.txtConstitution.Location = new System.Drawing.Point(449, 170);
+            this.txtConstitution.Margin = new System.Windows.Forms.Padding(2);
             this.txtConstitution.MaxLength = 3;
             this.txtConstitution.Name = "txtConstitution";
             this.txtConstitution.PlaceholderText = "Constitution";
-            this.txtConstitution.Size = new System.Drawing.Size(109, 31);
+            this.txtConstitution.Size = new System.Drawing.Size(88, 27);
             this.txtConstitution.TabIndex = 7;
             // 
             // txtCharisma
             // 
-            this.txtCharisma.Location = new System.Drawing.Point(688, 213);
+            this.txtCharisma.Location = new System.Drawing.Point(550, 170);
+            this.txtCharisma.Margin = new System.Windows.Forms.Padding(2);
             this.txtCharisma.MaxLength = 3;
             this.txtCharisma.Name = "txtCharisma";
             this.txtCharisma.PlaceholderText = "Charisma";
-            this.txtCharisma.Size = new System.Drawing.Size(109, 31);
+            this.txtCharisma.Size = new System.Drawing.Size(88, 27);
             this.txtCharisma.TabIndex = 8;
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(158, 273);
+            this.txtDescription.Location = new System.Drawing.Point(126, 218);
+            this.txtDescription.Margin = new System.Windows.Forms.Padding(2);
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(245, 31);
+            this.txtDescription.Size = new System.Drawing.Size(197, 27);
             this.txtDescription.TabIndex = 9;
             // 
             // errCharacterNew
@@ -195,10 +223,10 @@
             // 
             // CharacterEdit
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.ClientSize = new System.Drawing.Size(834, 416);
+            this.ClientSize = new System.Drawing.Size(667, 333);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.txtCharisma);
             this.Controls.Add(this.txtConstitution);
@@ -215,6 +243,7 @@
             this.Controls.Add(this.btnCharacterCancel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCharacterSave);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CharacterEdit";

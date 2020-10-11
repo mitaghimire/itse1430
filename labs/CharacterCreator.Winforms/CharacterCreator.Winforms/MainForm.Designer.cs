@@ -128,7 +128,7 @@
             this.lstCharacter.HorizontalScrollbar = true;
             this.lstCharacter.ItemHeight = 20;
             this.lstCharacter.Location = new System.Drawing.Point(0, 28);
-            this.lstCharacter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lstCharacter.Margin = new System.Windows.Forms.Padding(2);
             this.lstCharacter.Name = "lstCharacter";
             this.lstCharacter.Size = new System.Drawing.Size(222, 287);
             this.lstCharacter.TabIndex = 1;
@@ -141,7 +141,7 @@
             this.Controls.Add(this.lstCharacter);
             this.Controls.Add(this.msFile);
             this.MainMenuStrip = this.msFile;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(212, 345);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
