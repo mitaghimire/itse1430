@@ -4,6 +4,9 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
+    <Company>Mita Ghimire</Company>
+    <Authors>Mita Ghimire</Authors>
+    <Product>MovieLibrary</Product>
   </PropertyGroup>
 
   <ItemGroup>

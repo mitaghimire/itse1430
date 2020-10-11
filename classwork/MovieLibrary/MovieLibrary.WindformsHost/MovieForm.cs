@@ -136,5 +136,60 @@ namespace MovieLibrary.WindformsHost
         {
 
         }
+
+        private void OnValidatedName ( object sender, CancelEventArgs e )
+        {
+            var control = sender as TextBox;
+
+            //Name is required
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                _errors.SetError(control, "Name is required");
+                e.Cancel = true; //Not validate
+            } else
+            {
+                //Clear error from provider
+                _errors.SetError(control, "");
+            };
+
+        }
+
+        private void OnValidateRunLength ( object sender, CancelEventArgs e )
+        {
+            var control = sender as TextBox;
+
+            var value = ReadAsInt32(control);
+
+            //Run Length >=0
+            if (value < 0)
+            {
+                _errors.SetError(control, "Run length must be >= 0");
+                e.Cancel = true; //Not validate
+            } else
+
+            {
+                //Clear error from provider
+                _errors.SetError(control, "");
+            };
+        }
+
+        private void OnValidateReleaseYear ( object sender, CancelEventArgs e )
+        {
+            var control = sender as TextBox;
+
+            var value = ReadAsInt32(control);
+
+            //Release Year >= 1900
+            if (value < 1900)
+            {
+                _errors.SetError(control, "Release Year must be >= 1900");
+                e.Cancel = true; //Not validate
+            } else
+
+            {
+                //Clear error from provider
+                _errors.SetError(control, "");
+            };
+        }
     }
 }

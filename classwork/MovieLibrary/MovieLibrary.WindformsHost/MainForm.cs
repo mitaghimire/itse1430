@@ -40,8 +40,23 @@ namespace MovieLibrary.WindformsHost
             // Hooks up an event handler to an event
             // Event += method
             // Event -= method
-            toolStripMenuItem5.Click += OnMovieAdd;
-            toolStripMenuItem7.Click += OnMovieDelete;
+            _miMovieAdd.Click += OnMovieAdd;
+            _miMovieEdit.Click +=_miMovieEdit_Click;
+            _miMovieDelete.Click += OnMovieDelete;
+            _miHelpAbout.Click += OnHelpAbout;
+
+        }
+
+        private void _miMovieEdit_Click ( object sender, EventArgs e )
+        {
+            throw new NotImplementedException();
+        }
+
+        private void OnHelpAbout ( object sender, EventArgs e )
+        {
+            var about = new AboutBox();
+
+            about.ShowDialog(this);
         }
 
         //Event - a notification to interested parties that something has happened
