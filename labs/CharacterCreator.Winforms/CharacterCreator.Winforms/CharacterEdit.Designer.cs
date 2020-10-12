@@ -72,6 +72,7 @@
             // 
             // btnCharacterCancel
             // 
+            this.btnCharacterCancel.CausesValidation = false;
             this.btnCharacterCancel.Location = new System.Drawing.Point(152, 280);
             this.btnCharacterCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCharacterCancel.Name = "btnCharacterCancel";
@@ -226,7 +227,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(667, 333);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.txtCharisma);
