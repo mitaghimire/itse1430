@@ -66,6 +66,9 @@ namespace MovieLibrary.WindformsHost
                 _txtReleaseYear.Text = Movie.ReleaseYear.ToString();
 
             };
+
+            //Go ahead and show validation errors
+            ValidateChildren();
         }
 
         // Method - function inside a class
@@ -79,6 +82,12 @@ namespace MovieLibrary.WindformsHost
         // void identifier ( object sender, EventArgs e )
         private void OnSave ( object sender, EventArgs e )
         {
+            //Force validation of all controls
+            if (!ValidateChildren())
+            {
+                DialogResult = DialogResult.None;
+                return;
+            };
             //I want the button that was clicked
             //Type casting
             // WRONG: var button = (Button)sender; // C-style cast - crashes if wrong
