@@ -126,6 +126,11 @@ namespace MovieLibrary.WindformsHost
         {
 
         }
+
+        private void listBox1_SelectedIndexChanged ( object sender, EventArgs e )
+        {
+
+        }
     }
 }
 //namespace OtherNamesspace
