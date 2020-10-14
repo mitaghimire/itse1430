@@ -60,7 +60,32 @@ namespace MovieLibrary.WindformsHost
         }
 
         //Event - a notification to interested parties that something has happened
-        private Movie _movie;
+        private Movie[] _movies;
+        private void AddMovie ( Movie movie )
+        {
+            MessageBox.Show("Not implemented yet");
+        }
+        private void DeleteMovie ( Movie movie )
+        {
+            MessageBox.Show("Not implemented yet");
+        }
+
+        private void EditMovie (Movie movie)
+        {
+            MessageBox.Show("Not implemented yet");
+        }
+
+        private Movie GetSelectedMovie ()
+        {
+            return null;
+        }
+
+        private void RefreshUI ()
+        {
+            _lstMovies.DisplayMember = nameof(Movie.Name); //"Name"
+            _lstMovies.DataSource = null;
+            _lstMovies.DataSource = _movies;
+        }
 
         private void OnMovieAdd (object sender, EventArgs e)
         {
@@ -71,65 +96,49 @@ namespace MovieLibrary.WindformsHost
            var result =  form.ShowDialog(this);  //Block until is dismissed
             if (result == DialogResult.Cancel)
                 return;
+            
+            //Save movie
+            AddMovie(form.Movie);
 
-            // After form is gone
-            //TOOO: Save movie
-            _movie = form.Movie;
-
-            MessageBox.Show("Save successful");
+            
 
         }
 
         private void OnMovieDelete ( object sender, EventArgs e)
         {
-            // Verify movie exists
-            if (_movie == null)
+            var movie = GetSelectedMovie();
+            if (movie == null)
                 return;
-
             //DialogResult
-           switch (MessageBox.Show(this, "Are you sure you want to delete?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+            switch (MessageBox.Show(this, "Are you sure you want to delete?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
             {
                 case DialogResult.Yes: break;
                 case DialogResult.No:return;
                  
             };
 
-            //TOOO: Delete movie
-            _movie = null;
+            
+            DeleteMovie(movie);
         }
 
         private void OnMovieEdit ( object sender, EventArgs e )
         {
-            if (_movie == null)
+            var movie = GetSelectedMovie();
+            if (movie == null)
                 return;
-
             //object creation
             // 1. Allocate memory from instance, zero initialized
             // 2. Initialize fields
             // 3. Constructor (finish initialization)
             // 4. Return new instance
-            var form = new MovieForm();
-            form.Movie = _movie;
+            var form = new MovieForm(movie, "Edit Movie");
+           // form.Movie = _movie;
             
             var result = form.ShowDialog(this);  //Block until is dismissed
             if (result == DialogResult.Cancel)
                 return;
 
-            
-            //TOOO: Update movie
-            _movie = form.Movie;
-
-            MessageBox.Show("Save successful");
-
-        }
-        private void MainForm_Load ( object sender, EventArgs e )
-        {
-
-        }
-
-        private void listBox1_SelectedIndexChanged ( object sender, EventArgs e )
-        {
-
+            EditMovie(form.Movie);
         }
     }
 }
