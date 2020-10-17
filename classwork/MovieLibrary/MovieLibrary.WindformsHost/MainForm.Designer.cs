@@ -128,7 +128,7 @@
             this._lstMovies.Name = "_lstMovies";
             this._lstMovies.Size = new System.Drawing.Size(761, 387);
             this._lstMovies.TabIndex = 1;
-            this._lstMovies.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this._lstMovies.SelectedIndexChanged += new System.EventHandler(this._lstMovies_SelectedIndexChanged);
             // 
             // MainForm
             // 
@@ -140,7 +140,6 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Movie Library";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

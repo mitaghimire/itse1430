@@ -29,6 +29,7 @@ namespace MovieLibrary.WindformsHost
 
 
             //label2.Text = "A label";
+           
 
             //var movie2 = new Movie(); //New instance
 
@@ -60,31 +61,92 @@ namespace MovieLibrary.WindformsHost
         }
 
         //Event - a notification to interested parties that something has happened
-        private Movie[] _movies;
+
+        //Array - T[] Array of movies
+        // Instantiate ::= new T[Ei]
+        // Index : 0 to Size - 1
+        // private Movie[] _movies = new Movie[100]; //0.99
+        private MovieDatabase _movies = new MovieDatabase();
+       // private Movie[] _emptyMovies = new Movie[0]; // empty arrays and nulls to be equivalent so always use empty array instead of null
+
         private void AddMovie ( Movie movie )
         {
-            MessageBox.Show("Not implemented yet");
+            var newMovie = _movies.Add(movie, out var message);
+            if (newMovie == null)
+            {
+                MessageBox.Show(this, message, "Add Failed", MessageBoxButtons.OK);
+                return;
+            };
+
+            RefreshUI();
+
+            // Find first empty sport in array
+            // for (EI; EC; EU ) S;
+            //     EI :: = initializer expression (runs once before loop executes)
+            //     EC :: = conditional expression => boolen (executes before loop statement is run, aborts if condition is false
+            //     EU :: = update expression (runs at end of current iterate)
+            // Length -> int(# of rows in the array)
+            //for (var index = 0; index < _movies.Length; ++index)
+            //{
+            //    if (_movies[index] == null)
+            //    {
+            //        //Add movie to array
+            //        _movies[index] = movie; //Movie is ref type thus movie and _movies[index] reference the same instance
+            //        return;
+            //    };
+            //};
+            //MessageBox.Show(this, "No more room for movies", "Add Failed", MessageBoxButtons.OK);
         }
-        private void DeleteMovie ( Movie movie )
+        
+        private void DeleteMovie ( int id )
         {
-            MessageBox.Show("Not implemented yet");
+            _movies.Delete(id);
+            //for (var index = 0; index < _movies.Length; ++index)
+            //{
+            //    //Array element acess :: = V[int]
+            //    //if (_movies[index] != null && _movies{index].Id == id)
+            //    if (_movies[index]?.Id == id) //null conditional ?. if instance != null acess the member
+            //    {
+            //        _movies[index] = null; 
+            //        return;
+            //    };
+            //};
         }
 
-        private void EditMovie (Movie movie)
+        private void EditMovie ( int id, Movie movie )
         {
-            MessageBox.Show("Not implemented yet");
+            var error = _movies.Update(id, movie);
+            if (String.IsNullOrEmpty(error))
+            {
+                RefreshUI();
+                return;
+            };
+            //for (var index = 0; index < _movies.Length; ++index)
+            //{ 
+            //    if (_movies[index]?.Id == id) //null conditional ?. if instance != null acess the member
+            //    {
+            //        //Just because we are doing this in memory
+            //        movie.Id = id;
+            //        _movies[index] = movie;
+            //        return;
+            //    };
+            //};
+            MessageBox.Show(this, error, "Edit Movie", MessageBoxButtons.OK);
         }
 
         private Movie GetSelectedMovie ()
         {
-            return null;
+            return _lstMovies.SelectedItem as Movie;
+
+ 
         }
 
         private void RefreshUI ()
         {
-            _lstMovies.DisplayMember = nameof(Movie.Name); //"Name"
+            //_lstMovies.DisplayMember = nameof(Movie.Name); //"Name"
+
             _lstMovies.DataSource = null;
-            _lstMovies.DataSource = _movies;
+            _lstMovies.DataSource = _movies.GetAll();
         }
 
         private void OnMovieAdd (object sender, EventArgs e)
@@ -99,9 +161,7 @@ namespace MovieLibrary.WindformsHost
             
             //Save movie
             AddMovie(form.Movie);
-
             
-
         }
 
         private void OnMovieDelete ( object sender, EventArgs e)
@@ -110,15 +170,14 @@ namespace MovieLibrary.WindformsHost
             if (movie == null)
                 return;
             //DialogResult
-            switch (MessageBox.Show(this, "Are you sure you want to delete?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+            switch (MessageBox.Show(this, $"Are you sure you want to delete '{movie.Name}'?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
             {
                 case DialogResult.Yes: break;
-                case DialogResult.No:return;
-                 
+                case DialogResult.No:return; 
             };
 
-            
-            DeleteMovie(movie);
+            DeleteMovie(movie.Id);
+            RefreshUI();
         }
 
         private void OnMovieEdit ( object sender, EventArgs e )
@@ -126,6 +185,7 @@ namespace MovieLibrary.WindformsHost
             var movie = GetSelectedMovie();
             if (movie == null)
                 return;
+
             //object creation
             // 1. Allocate memory from instance, zero initialized
             // 2. Initialize fields
@@ -138,7 +198,12 @@ namespace MovieLibrary.WindformsHost
             if (result == DialogResult.Cancel)
                 return;
 
-            EditMovie(form.Movie);
+            EditMovie(movie.Id, form.Movie);
+        }
+
+        private void _lstMovies_SelectedIndexChanged ( object sender, EventArgs e )
+        {
+
         }
     }
 }
