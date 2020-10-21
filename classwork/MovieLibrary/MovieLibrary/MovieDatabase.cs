@@ -6,54 +6,113 @@ namespace MovieLibrary
 {
     public class MovieDatabase
     {
+        //Default constructor to seed database
+        public MovieDatabase ()
+        {
+            //Not Needed here
+            //_movies.Clear(); clear all item from list
+
+            //Seed database
+            var movie = new Movie();
+            movie.Name = "Jaws";
+            movie.ReleaseYear = 1977;
+            movie.RunLength = 190;
+            movie.Description = "Shark movie";
+            movie.IsClassic = true;
+            movie.Rating = "PG";
+            Add(movie, out var error);
+
+            movie = new Movie();
+            movie.Name = "Jaws 2";
+            movie.ReleaseYear = 1979;
+            movie.RunLength = 195;
+            movie.Description = "Shark movie";
+            movie.IsClassic = true;
+            movie.Rating = "PG 13";
+            Add(movie, out error);
+
+            movie = new Movie();
+            movie.Name = "Dune";
+            movie.ReleaseYear = 1985;
+            movie.RunLength = 220;
+            movie.Description = "Based on book";
+            movie.IsClassic = true;
+            movie.Rating = "PG";
+            Add(movie, out error);
+        }
         public Movie Add ( Movie movie, out string error )
         {
             //TOO : Movie is valid
             // Movie name is unique
             error = "";
+
+            //Clone so argument can be modified without impacting out array
+                 var item = CloneMovie(movie);
+
+            //Set a unique ID
+            item.Id = _id++;
+
+            //Add movie to array
+            //_movies[index] = item;
+            _movies.Add(item);
+
+            //Set ID on orginal object and return
+             movie.Id = item.Id;
+            return movie;
+
             // Find first empty sport in array
             // for (EI; EC; EU ) S;
             //     EI :: = initializer expression (runs once before loop executes)
             //     EC :: = conditional expression => boolen (executes before loop statement is run, aborts if condition is false
             //     EU :: = update expression (runs at end of current iterate)
             // Length -> int(# of rows in the array)
-            for (var index = 0; index < _movies.Length; ++index)
-            {
-                // Array element acess :: = V[int]
-                if (_movies[index] == null)
-                {
-                    //Clone so argument can be modified without impacting out array
-                    var item = CloneMovie(movie);
+            // for (var index = 0; index < _movies.Length; ++index)
+            //    for(var index = 0; index <_movies.Count; ++index)  //List
+            //{
+            //    // Array element acess :: = V[int]
+            //    //if (_movies[index] == null)
+            //    {
+            //        //Clone so argument can be modified without impacting out array
+            //       var item = CloneMovie(movie);
 
-                    //Set a unique ID
-                    item.Id = _id++;
+            //        //Set a unique ID
+            //        item.Id = _id++;
 
-                    //Add movie to array
-                    _movies[index] = item;
+            //        //Add movie to array
+            //        //  _movies[index] = item;
+            //            _movies.Add(item);
 
-                    //Set ID on orginal object and return
-                    movie.Id = item.Id;
-                    return movie;
-                };
-            };
-            
-            error = "No more room";
-            return null;
+            //        //Set ID on orginal object and return
+            //        movie.Id = item.Id;
+            //        return movie;
+            //    };
+            //};
+
+            //error = "No more room";
+            //return null;
         }
 
         public void Delete ( int id )
         {
             //TOOO : Validate Id
-            for (var index = 0; index < _movies.Length; ++index)
-            {
-                //Array element acess :: = V[int]
-                //if (_movies[index] != null && _movies{index].Id == id)
-                if (_movies[index]?.Id == id) //null conditional ?. if instance != null acess the member
+
+            var movie = GetById(id);
+                if(movie != null)
                 {
-                    _movies[index] = null;
-                    return;
+                    //Must use the same instance that is stored in the list so ref equality works
+                    _movies.Remove(movie);
                 };
-            };
+            
+            //for (var index = 0; index < _movies.Length; ++index)
+            //{
+            //    //Array element acess :: = V[int]
+            //    //if (_movies[index] != null && _movies{index].Id == id)
+            //    if (_movies[index]?.Id == id) //null conditional ?. if instance != null acess the member
+            //    {
+            //        _movies[index] = null;
+            //        return;
+            //    };
+            //};
         }
 
         public Movie[]GetAll ()
@@ -66,50 +125,65 @@ namespace MovieLibrary
 
             //TOOO: Determine how many movies we're storing
             //For each one create a clone copy
-            return _movies;
+            //return _movies;
+
+            var items = new Movie[_movies.Count];
+            var index = 0;
+            foreach (var movie in _movies)
+                items[index++] = CloneMovie(movie);
+
+            return items;
+
         }
 
         public Movie Get (int id)
 
         {
-            //foreach(var id in array) S
-           // for (var index = 0; index < _movies.Length; ++index)
-           foreach(var movie in _movies)
+            var movie = GetById(id);
+
+            //Clone movie if we found it
+            return (movie != null) ? CloneMovie(movie) : null;
+        }
+
+        private Movie GetById ( int id )
+        {
+            foreach (var movie in _movies)
             {
                 //movie == _movies[index]
                 // Restrictions:
                 // 1. movie is readonly  // movie = new Movie();
                 // 2. _movies cannot change, immutable
                 if (movie?.Id == id) //null conditional ?. if instance != null acess the member
-                    return CloneMovie(movie);
+                    return movie;
             };
             return null;
         }
-            
 
         public string Update ( int id, Movie movie )
         {
             //TOO: Validate Id
             // Movie exists
-            var existing = Get(id);
+            var existing = GetById(id);
             if (existing == null)
                 return "Movie not found";
 
             // updated movie is valid
             // updated movie name is unique
+            CopyMovie(existing, movie);
 
-            for (var index = 0; index < _movies.Length; ++index)
-            {
-                if (_movies[index]?.Id == id) //null conditional ?. if instance != null acess the member
-                {
-                    //Clone it so we separate our value from argument
-                    var item = CloneMovie(movie);
+           // for (var index = 0; index < _movies.Length; ++index)
+           //for (var index = 0; index <_movies.Count; ++index) //List
+           // {
+           //     if (_movies[index]?.Id == id) //null conditional ?. if instance != null acess the member
+           //     {
+           //         //Clone it so we separate our value from argument
+           //         var item = CloneMovie(movie);
 
-                    item.Id = id;
-                    _movies[index] = item;
-                    return "";
-                };
-            };
+           //         item.Id = id;
+           //         _movies[index] = item;
+           //         return "";
+           //     };
+           // };
             
             return "";
         }
@@ -117,18 +191,32 @@ namespace MovieLibrary
         {
             var item = new Movie();
             item.Id = movie.Id;
-            item.Rating = movie.Rating;
-            item.ReleaseYear = movie.ReleaseYear;
-            item.RunLength = movie.RunLength;
-            item.IsClassic = movie.IsClassic;
-            item.Description = movie.Description;
+
+            CopyMovie(item, movie);
 
             return item;
         }
 
+        private void CopyMovie (Movie target, Movie source)
+        {
+            target.Name = source.Name;
+            target.Rating = source.Rating;
+            target.ReleaseYear = source.ReleaseYear;
+            target.RunLength = source.RunLength;
+            target.IsClassic = source.IsClassic;
+            target.Description = source.Description;
+        }
+
         //Only store clone copies of movies here!!
-         private Movie[] _movies = new Movie[100]; //0.99
-         private int _id = 1;
+        // private Movie[] _movies = new Movie[100]; //0.99
+        private List<Movie> _movies = new List<Movie>(); //Generic list of Movies, use for field
+        //private CollectionMode<Movie> _temp;             //Public read-writable lists
+        private int _id = 1;
+
+        // Non-generic
+        //ArrayList - list of objects
+        // Generic Types
+        // List<T> where T is any type
 
     }
 }

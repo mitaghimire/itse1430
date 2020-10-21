@@ -42,15 +42,17 @@ namespace MovieLibrary.WindformsHost
             // Event += method
             // Event -= method
             _miMovieAdd.Click += OnMovieAdd;
-            _miMovieEdit.Click +=_miMovieEdit_Click;
+            _miMovieEdit.Click += OnMovieEdit;
             _miMovieDelete.Click += OnMovieDelete;
             _miHelpAbout.Click += OnHelpAbout;
 
         }
 
-        private void _miMovieEdit_Click ( object sender, EventArgs e )
+        protected override void OnLoad ( EventArgs e )
         {
-            throw new NotImplementedException();
+            base.OnLoad(e);
+
+            RefreshUI();
         }
 
         private void OnHelpAbout ( object sender, EventArgs e )
