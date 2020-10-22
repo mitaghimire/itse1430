@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MovieLibrary
 {
-    public class MovieDatabase
+    public class MovieDatabase : IMovieDatabase
     {
         //Default constructor to seed database
         public MovieDatabase ()
@@ -12,33 +12,87 @@ namespace MovieLibrary
             //Not Needed here
             //_movies.Clear(); clear all item from list
 
+            //Collection initializer syntax
+            var items = new[] { //new Movie[] {
+                new Movie() {
+                   Name = "Jaws",
+                   ReleaseYear = 1977,
+                   RunLength = 190,
+                   Description = "Shark movie",
+                   IsClassic = true,
+                   Rating = "PG",   // Can have a comma at end
+                },
+               new Movie() {
+                Name = "Jaws 2",
+                ReleaseYear = 1979,
+                RunLength = 195,
+                Description = "Shark movie",
+                IsClassic = true,
+                Rating = "PG 13",
+               },
+               new Movie() {
+                 Name = "Dune",
+                 ReleaseYear = 1985,
+                 RunLength = 220,
+                 Description = "Based on book",
+                 IsClassic = true,
+                 Rating = "PG",
+               },
+
+            };
+            foreach (var item in items)
+                Add(item, out var error);
+
             //Seed database
-            var movie = new Movie();
-            movie.Name = "Jaws";
-            movie.ReleaseYear = 1977;
-            movie.RunLength = 190;
-            movie.Description = "Shark movie";
-            movie.IsClassic = true;
-            movie.Rating = "PG";
-            Add(movie, out var error);
+            // Object initializer - only usable on new operator
+            //   1. can only set properties with setters
+            //   2. can set properties that are themselves new'ed up but cannot set child properties
+            //                 Position = new Position () {Name = "Boss" ); // Allowed
+            //                 position.Title = "Boss" ; // Not allowed
+            //   3. Propperties cannot rely on other properties
+            //                 Description = "blah"
+            //                 FullDescription = Description
 
-            movie = new Movie();
-            movie.Name = "Jaws 2";
-            movie.ReleaseYear = 1979;
-            movie.RunLength = 195;
-            movie.Description = "Shark movie";
-            movie.IsClassic = true;
-            movie.Rating = "PG 13";
-            Add(movie, out error);
+            //var movie = new Movie();
+            //movie.Name = "Jaws";
+            //movie.ReleaseYear = 1977;
+            //movie.RunLength = 190;
+            //movie.Description = "Shark movie";
+            //movie.IsClassic = true;
+            //movie.Rating = "PG";
+            // var movie = new Movie() {
+            //     Name = "Jaws",
+            //     ReleaseYear = 1977,
+            //     RunLength = 190,
+            //     Description = "Shark movie",
+            //     IsClassic = true,
+            //     Rating = "PG",   // Can have a comma at end
+            // };
+            // Add(movie, out var error);
 
-            movie = new Movie();
-            movie.Name = "Dune";
-            movie.ReleaseYear = 1985;
-            movie.RunLength = 220;
-            movie.Description = "Based on book";
-            movie.IsClassic = true;
-            movie.Rating = "PG";
-            Add(movie, out error);
+            // movie = new Movie() {
+            //     Name = "Jaws 2",
+            //     ReleaseYear = 1979,
+            //     RunLength = 195,
+            //     Description = "Shark movie",
+            //     IsClassic = true,
+            //     Rating = "PG 13",
+            // };
+            // Add(movie, out error);
+
+
+            // movie = new Movie() {
+            //     Name = "Dune",
+            //     ReleaseYear = 1985,
+            //     RunLength = 220,
+            //     Description = "Based on book",
+            //     IsClassic = true,
+            //     Rating = "PG",
+
+            //};
+            // Add(movie, out error);
+
+
         }
         public Movie Add ( Movie movie, out string error )
         {
@@ -47,7 +101,7 @@ namespace MovieLibrary
             error = "";
 
             //Clone so argument can be modified without impacting out array
-                 var item = CloneMovie(movie);
+            var item = CloneMovie(movie);
 
             //Set a unique ID
             item.Id = _id++;
@@ -57,7 +111,7 @@ namespace MovieLibrary
             _movies.Add(item);
 
             //Set ID on orginal object and return
-             movie.Id = item.Id;
+            movie.Id = item.Id;
             return movie;
 
             // Find first empty sport in array
@@ -97,12 +151,12 @@ namespace MovieLibrary
             //TOOO : Validate Id
 
             var movie = GetById(id);
-                if(movie != null)
-                {
-                    //Must use the same instance that is stored in the list so ref equality works
-                    _movies.Remove(movie);
-                };
-            
+            if (movie != null)
+            {
+                //Must use the same instance that is stored in the list so ref equality works
+                _movies.Remove(movie);
+            };
+
             //for (var index = 0; index < _movies.Length; ++index)
             //{
             //    //Array element acess :: = V[int]
@@ -115,7 +169,7 @@ namespace MovieLibrary
             //};
         }
 
-        public Movie[]GetAll ()
+        public Movie[] GetAll ()
         {
             //DONOT DO THIS
             //1. Expose underlying movie  items
@@ -136,7 +190,7 @@ namespace MovieLibrary
 
         }
 
-        public Movie Get (int id)
+        public Movie Get ( int id )
 
         {
             var movie = GetById(id);
@@ -171,23 +225,23 @@ namespace MovieLibrary
             // updated movie name is unique
             CopyMovie(existing, movie);
 
-           // for (var index = 0; index < _movies.Length; ++index)
-           //for (var index = 0; index <_movies.Count; ++index) //List
-           // {
-           //     if (_movies[index]?.Id == id) //null conditional ?. if instance != null acess the member
-           //     {
-           //         //Clone it so we separate our value from argument
-           //         var item = CloneMovie(movie);
+            // for (var index = 0; index < _movies.Length; ++index)
+            //for (var index = 0; index <_movies.Count; ++index) //List
+            // {
+            //     if (_movies[index]?.Id == id) //null conditional ?. if instance != null acess the member
+            //     {
+            //         //Clone it so we separate our value from argument
+            //         var item = CloneMovie(movie);
 
-           //         item.Id = id;
-           //         _movies[index] = item;
-           //         return "";
-           //     };
-           // };
-            
+            //         item.Id = id;
+            //         _movies[index] = item;
+            //         return "";
+            //     };
+            // };
+
             return "";
         }
-        private Movie CloneMovie (Movie movie)
+        private Movie CloneMovie ( Movie movie )
         {
             var item = new Movie();
             item.Id = movie.Id;
@@ -197,7 +251,7 @@ namespace MovieLibrary
             return item;
         }
 
-        private void CopyMovie (Movie target, Movie source)
+        private void CopyMovie ( Movie target, Movie source )
         {
             target.Name = source.Name;
             target.Rating = source.Rating;
