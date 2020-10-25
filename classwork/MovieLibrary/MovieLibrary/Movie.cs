@@ -1,9 +1,12 @@
-﻿/*
+﻿
+/*
  * ITSE 1430
  * Mita Ghimire
  * Classwork
  */
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 //StringBuliding, Regular expressions, Encoding
 //using System.Text;
@@ -24,7 +27,7 @@ namespace MovieLibrary
     /// A paragraph of information.
     /// Another set of information.
     /// </remaks>
-    public class Movie
+    public class Movie : IValidatableObject
     {
         //Data - data to store
 
@@ -185,6 +188,11 @@ namespace MovieLibrary
         public override string ToString ()
         {
             return Name;
+        }
+
+        public IEnumerable<ValidationResult> Validate ( ValidationContext validationContext )
+        {
+            throw new NotImplementedException();
         }
     }
 

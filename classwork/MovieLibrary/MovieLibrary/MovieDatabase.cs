@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MovieLibrary
 {
-    public class MovieDatabase : IMovieDatabase
+    public class MovieDatabase : IMovieDatabase  // IEditableDatabase, IReadableDatabase
     {
         //Default constructor to seed database
         public MovieDatabase ()
@@ -94,6 +94,9 @@ namespace MovieLibrary
 
 
         }
+
+        //Not on interface
+        public void Foo () { }
         public Movie Add ( Movie movie, out string error )
         {
             //TOO : Movie is valid
@@ -169,7 +172,9 @@ namespace MovieLibrary
             //};
         }
 
-        public Movie[] GetAll ()
+        //Use IEnumerable<T> for readonly lists of items
+        //public Movie[] GetAll ()
+        public IEnumerable<Movie> GetAll ()
         {
             //DONOT DO THIS
             //1. Expose underlying movie  items
@@ -181,12 +186,24 @@ namespace MovieLibrary
             //For each one create a clone copy
             //return _movies;
 
-            var items = new Movie[_movies.Count];
-            var index = 0;
-            foreach (var movie in _movies)
-                items[index++] = CloneMovie(movie);
+            //var items = new Movie[_movies.Count];
+            // var index = 0;
 
-            return items;
+            //Foreach equivalent
+            // var enumerator = _movies.GetEnumerator();
+            // while (enumerator.Next())
+            //{
+            // var movie = enumerator.Current;
+            //  S*
+            //}
+
+            //iterator
+            // yield return T
+            foreach (var movie in _movies)  // relies in IEnumerator<T>
+                                            // items[index++] = CloneMovie(movie);
+                yield return CloneMovie(movie);
+                ;
+           // return items;
 
         }
 
