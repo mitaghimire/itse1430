@@ -1,4 +1,5 @@
 ﻿using System;        //DO NOT DELETE
+using System.Linq;
 using System.Windows.Forms;
 
 //Hierarchical namespaces
@@ -145,8 +146,9 @@ namespace MovieLibrary.WindformsHost
 
         private void RefreshUI ()
         {
-            _lstMovies.DataSource = null;
-            _lstMovies.DataSource = _movies.GetAll();
+            _lstMovies.DataSource = _movies.GetAll().ToArray();
+           // _lstMovies.DataSource = null;
+           // _lstMovies.DataSource = _movies.GetAll();
 
             //_lstMovies.DisplayMember = nameof(Movie.Name); //"Name"
         }

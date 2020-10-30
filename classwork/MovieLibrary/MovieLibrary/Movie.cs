@@ -155,44 +155,56 @@ namespace MovieLibrary
 
         /// <summary>Validates the movie instance.</summary>
         /// <returns> The error message, if any.</returns>
-        public string Validate(/*Movie this */)
-        {
-            //this is reference to current instance
-            //rarely needed
-            //var name = this.Name;
+       // public string Validate(/*Movie this */)
+       // {
+        //    //this is reference to current instance
+        //    //rarely needed
+        //    //var name = this.Name;
 
-            //only 2 cases where 'this' is needed
-            //1. scoping issues => fix the issue
-            //    fields are _id
-            //    locals are id
-            //    ex:
-            //      var Name =""; //WRONG
-            // this.Nmae = Name; //CORRECT
-            // 2. passing the entire object to another method (only really valid case)
+        //    //only 2 cases where 'this' is needed
+        //    //1. scoping issues => fix the issue
+        //    //    fields are _id
+        //    //    locals are id
+        //    //    ex:
+        //    //      var Name =""; //WRONG
+        //    // this.Nmae = Name; //CORRECT
+        //    // 2. passing the entire object to another method (only really valid case)
 
             //Name ir required
-            if (String.IsNullOrEmpty(Name)) //this.Name
-                return "Name is require";
+            //if (String.IsNullOrEmpty(Name)) //this.Name
+               // return "Name is require";
 
             //Run lenght must be >= 0
-            if (RunLength <= 0)
-                return "Run Length must be greater than or equal to 0";
+            //if (RunLength <= 0)
+                //return "Run Length must be greater than or equal to 0";
 
             //Release year must be >= 1900
+            //if (ReleaseYear< 1900)
+                //return "Release Year must be at least 1900";
+
+            //return null;
+       // }
+
+    public override string ToString ()
+    {
+        return Name;
+    }
+
+    public IEnumerable<ValidationResult> Validate ( ValidationContext validationContext )
+        {
+            //when you are using the iterator syntax then all the return statement must be yield return
+
+            if (String.IsNullOrEmpty(Name))
+                yield return new ValidationResult("Name is required", new[] { nameof(Name) });
+                        //Yield returing new validation result with message and string array (collection in it syntax) containg a single strin with name of Name
+
+            if (RunLength <0)
+                yield return new ValidationResult("Run Length must be greater than or equal to 0" ,new[] { nameof(RunLength) });
+
             if (ReleaseYear < 1900)
-                return "Release Year must be at least 1900";
+                yield return new ValidationResult("Release Year must be at least 1900", new[] { nameof(ReleaseYear) });
 
-            return null;
-        }
-
-        public override string ToString ()
-        {
-            return Name;
-        }
-
-        public IEnumerable<ValidationResult> Validate ( ValidationContext validationContext )
-        {
-            throw new NotImplementedException();
+            //return null;
         }
     }
 

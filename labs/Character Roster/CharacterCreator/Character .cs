@@ -20,6 +20,7 @@ namespace CharacterCreator
         //•	Description: The optional, biographic details of the character.
 
         [Required(ErrorMessage = "Character Name is Required!")]
+        
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Profession is Required!")]

@@ -79,8 +79,10 @@ namespace CharacterCreator.Winforms
                         if (result.MemberNames.Contains("Intelligence"))
                             errCharacterNew.SetError(txtIntelligent, result.ErrorMessage);
                     }
-                }
-                else
+                } else if (roster.GetAll().Any(r => r.Name.Equals(newCharacter.Name, StringComparison.InvariantCultureIgnoreCase)))
+                {
+                    errCharacterNew.SetError(txtCharacterName, "The Name should be unique!!");
+                } else
                 {
                     roster.Add(newCharacter);
                     this.Close();

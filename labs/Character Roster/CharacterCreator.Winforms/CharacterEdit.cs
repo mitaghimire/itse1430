@@ -82,6 +82,10 @@ namespace CharacterCreator.Winforms
                             errCharacterNew.SetError(txtIntelligent, result.ErrorMessage);
                     }
                 }
+                else if(roster.GetAll().Any(r=>r.Name.Equals(updateCharacter.Name, StringComparison.InvariantCultureIgnoreCase)))
+                {
+                    errCharacterNew.SetError(txtCharacterName,"The Name should be unique!!");
+                }
                 else
                 {
                     roster.Update(EditCharacter.UniqueIdentifier, updateCharacter);

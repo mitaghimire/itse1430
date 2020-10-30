@@ -168,6 +168,7 @@
             this.txtStrength.PlaceholderText = "Strength";
             this.txtStrength.Size = new System.Drawing.Size(87, 27);
             this.txtStrength.TabIndex = 4;
+            this.txtStrength.Text = "50";
             // 
             // txtIntelligent
             // 
@@ -178,6 +179,7 @@
             this.txtIntelligent.PlaceholderText = "Intelligent";
             this.txtIntelligent.Size = new System.Drawing.Size(96, 27);
             this.txtIntelligent.TabIndex = 5;
+            this.txtIntelligent.Text = "50";
             // 
             // txtAgility
             // 
@@ -188,6 +190,7 @@
             this.txtAgility.PlaceholderText = "Agility";
             this.txtAgility.Size = new System.Drawing.Size(93, 27);
             this.txtAgility.TabIndex = 6;
+            this.txtAgility.Text = "50";
             // 
             // txtConstitution
             // 
@@ -198,6 +201,7 @@
             this.txtConstitution.PlaceholderText = "Constitution";
             this.txtConstitution.Size = new System.Drawing.Size(88, 27);
             this.txtConstitution.TabIndex = 7;
+            this.txtConstitution.Text = "50";
             // 
             // txtCharisma
             // 
@@ -208,6 +212,7 @@
             this.txtCharisma.PlaceholderText = "Charisma";
             this.txtCharisma.Size = new System.Drawing.Size(88, 27);
             this.txtCharisma.TabIndex = 8;
+            this.txtCharisma.Text = "50";
             // 
             // txtDescription
             // 
@@ -219,6 +224,7 @@
             // 
             // errCharacterNew
             // 
+            this.errCharacterNew.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errCharacterNew.ContainerControl = this;
             // 
             // CharacterNew

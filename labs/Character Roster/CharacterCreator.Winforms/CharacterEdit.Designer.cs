@@ -189,6 +189,7 @@
             // 
             // errCharacterNew
             // 
+            this.errCharacterNew.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errCharacterNew.ContainerControl = this;
             // 
             // cbProfession

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -114,19 +116,25 @@ namespace MovieLibrary.WindformsHost
             //Won't compile
             //movie.Age =10;
 
-            //TOOO Fix Validation
-            var error = movie.Validate();
-            if (!String.IsNullOrEmpty(error))
+            //TOO : Fix type Validate
+            var ValidationResults = new ObjectValidator().TryValidateFullObject(movie);
+            if(ValidationResults.Count() > 0)
             {
-                //Show error message - use for standard message
-                MessageBox.Show(this, error, "save Failed" , MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //TOO : Fix this later using String.Join
+                var builder = new System.Text.StringBuilder();
+                foreach(var result in ValidationResults)
+                {
+                    builder.AppendLine(result.ErrorMessage);
+                };
+
+                //Show errormessage
+                MessageBox.Show(this, builder.ToString(), "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 DialogResult = DialogResult.None;
                 return;
 
             };
-
-            // Return movie
-            Movie = movie;
+        // Return movie
+        Movie = movie;
             Close();
         }
 
