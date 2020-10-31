@@ -27,11 +27,11 @@ namespace MovieLibrary.Memory
         
         }
 
-        public void Delete ( int id )
+        protected override void DeleteCore ( int id )
         {
            
 
-            var movie = GetById(id);
+            var movie = FindById(id);
             if (movie != null)
             {
                
@@ -41,60 +41,41 @@ namespace MovieLibrary.Memory
            
         }
 
-        public IEnumerable<Movie> GetAll ()
+        // public IEnumerable<Movie> GetAll ()
+        protected override IEnumerable<Movie> GetAllCore ()
         {
-          
-            foreach (var movie in _movies)  
+            foreach (var movie in _movies)
                 yield return CloneMovie(movie);
-                ;
-           
-
         }
 
-        public Movie Get ( int id )
-
+        //public Movie Get ( int id )
+        protected override Movie GetByIdCore ( int id )
         {
-            var movie = GetById(id);
+            var movie = FindById(id);
 
-            
+
             return (movie != null) ? CloneMovie(movie) : null;
         }
 
-        private Movie GetById ( int id )
-        {
-            foreach (var movie in _movies)
-            {
-                
-                if (movie?.Id == id) 
-                    return movie;
-            };
-            return null;
-        }
-
-        public string Update ( int id, Movie movie )
-        {
-           
-            var existing = GetById(id);
-            if (existing == null)
-                return "Movie not found";
-
-           
-            CopyMovie(existing, movie);
-
-    
-            return "";
-        }
-
-        protected override Movie FindByName ( string name )
+        protected override Movie GetByName ( string name )
         {
             foreach (var movie in _movies)
             {
                 if (String.Compare(movie.Name, name, true) == 0)
-                    return CloneMovie (movie);
+                    return CloneMovie(movie);
             };
 
             return null;
         }
+
+        //public string Update ( int id, Movie movie )
+        protected override void UpdateCore ( int id, Movie movie )
+        {
+            var existing = FindById(id);
+
+            CopyMovie(existing, movie); 
+        }
+ 
         private Movie CloneMovie ( Movie movie )
         {
             var item = new Movie();
@@ -115,12 +96,24 @@ namespace MovieLibrary.Memory
             target.Description = source.Description;
         }
 
-        
+        private Movie FindById ( int id )
+        {
+            foreach (var movie in _movies)
+            {
+
+                if (movie?.Id == id)
+                    return movie;
+            };
+            return null;
+        }
+
         private List<Movie> _movies = new List<Movie>(); //Generic list of Movies, use for field
                     
         private int _id = 1;
 
-        
-
+        //Non-generic
+        //  arrayList - list of objects
+        // Generic Types
+        // List<T> where T is any type
     }
 }
