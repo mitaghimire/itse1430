@@ -124,7 +124,7 @@ namespace MovieLibrary.WindformsHost
                 var builder = new System.Text.StringBuilder();
                 foreach(var result in ValidationResults)
                 {
-                    builder.AppendLine(result.ErrorMessage);
+                   builder.AppendLine(result.ErrorMessage);
                 };
 
                 //Show errormessage

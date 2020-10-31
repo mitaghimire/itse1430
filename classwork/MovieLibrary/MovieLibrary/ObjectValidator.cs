@@ -15,9 +15,9 @@ namespace MovieLibrary
             return ValidationResults;
         }
 
-        public object TryValidateFullObject ( Movie movie )
-        {
-            throw new NotImplementedException();
-        }
+        //public object TryValidateFullObject ( Movie movie )
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
