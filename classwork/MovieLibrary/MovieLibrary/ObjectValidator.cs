@@ -15,9 +15,12 @@ namespace MovieLibrary
             return ValidationResults;
         }
 
-        //public object TryValidateFullObject ( Movie movie )
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public void ValidateFullObject( IValidatableObject value )
+        {
+            
+            Validator.ValidateObject(value, new ValidationContext(value), true);
+
+        }
+
     }
 }

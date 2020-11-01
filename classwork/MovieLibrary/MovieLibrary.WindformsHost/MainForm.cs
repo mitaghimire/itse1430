@@ -181,7 +181,8 @@ namespace MovieLibrary.WindformsHost
                 return;
             
             //Save movie
-            AddMovie(form.Movie);
+            //AddMovie(form.Movie);
+            AddMovie(null);
             
         }
 
