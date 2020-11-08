@@ -4,12 +4,14 @@ using System.Text;
 
 namespace MovieLibrary
 {
-   public class SeedMovieDatabase
+   public static class SeedMovieDatabase
     {
-        public void Seed (IMovieDatabase database)
+        //Make static because it does not reference any instance data
+        //Nor does it really need to be created
+        public static void Seed (IMovieDatabase database)
         {
-            //Not Needed here
-            //_movies.Clear(); clear all item from list
+            //Not Needed here - clear all item from list
+            //_movies.Clear(); 
 
             //Collection initializer syntax
             var items = new[] { //new Movie[] {
@@ -41,8 +43,10 @@ namespace MovieLibrary
             };
 
             // TOOO: Fix error handling
+            //foreach (var item in items)
+            //   database.Add(item, out var error);
             foreach (var item in items)
-               database.Add(item, out var error);
+                database.Add(item);
 
 
         }

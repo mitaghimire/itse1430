@@ -19,12 +19,14 @@ namespace MovieLibrary
     public interface IMovieDatabase
     {
         /// <summary>Add a movie to  the database.</summary>
-        /// <param name="movie"></param>
-        /// <param name="error"></param>
+        /// <param name="movie"> The movie to add. </param>
         /// <returns>The new movie.</returns>
+        /// <exception cref="ArgumentNullException"></paramref name = "movie"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">A movie with the same name already exists.</exception
+        /// exception cref ="InvalidOperationException"> A movie with the same name already exists.</exception
         /// error: Movie is invalid
         /// error: Movie already exists
-        Movie Add ( Movie movie, out string error );
+        Movie Add ( Movie movie );
 
         /// <summary>Delets a movie from the database.</summary>
         /// <param name="id"> The movie to delet.</param>
@@ -36,9 +38,14 @@ namespace MovieLibrary
         /// error: Id is less than zero.
         Movie Get ( int id );
 
-        /// <summary>Gets all the movies.</summary>
-        /// <returns>The movies.</returns>
+        /// <summary>Updates an existing movie in the database.</summary>
+        /// <param name="id">The movie to update.</param>
+        /// <param name="movie">The movie details.</param>
+        /// error : Id is less than zero.
+        /// error : Movie does not exist.
+        /// error : Movie is not valid.
+        /// error : Movie name already exists.
         IEnumerable<Movie>GetAll ();
-        string Update ( int id, Movie movie );
+        void Update ( int id, Movie movie );
     }
 }

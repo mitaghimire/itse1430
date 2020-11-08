@@ -25,7 +25,7 @@ namespace MovieLibrary
         {
             //Exception type is the base type of all exceptions
             //Aurguments should always fall with  Argument exception
-            // Exception 
+            // Exception -> generic exceptions with a message
            // ArgumentException -> generic argument exception
             //    ArgumentNullException -> argument is null and it shouldn't be 
             //    ArgumentOutOfRangeException -> argument is outside excepted range (generally numeric)
@@ -42,9 +42,10 @@ namespace MovieLibrary
             //Movie is not null
             if (movie == null)
               throw new ArgumentNullException(nameof(movie)) ;   //Argument is null and it shouldn't be, pretty much all reference types
-          
+
             //Movie is valid
-            new ObjectValidator().ValidateFullObject(movie);
+            var v = new ObjectValidator();
+             ObjectValidator.ValidateFullObject(movie);
             //if (results.Count() > 0)
             //{
             //    foreach (var result in results)
@@ -56,19 +57,30 @@ namespace MovieLibrary
 
 
             // Movie name is unique
-           // var existing = GetByName(movie.Name);
+            // var existing = GetByName(movie.Name);
             // if (existing != null)
             //throw new InvalidOperationException("Movie must be unique");
 
             //Throw expression :: - E  throw E
-            var existing = GetByName(movie.Name)?? throw new InvalidOperationException("Movie must be unique");
+            // Throw expression ::= E ?? throw E
+            var existing = GetByName(movie.Name);
+            if (existing != null)
+                throw new InvalidOperationException("Movie must be unique");
+            // var existing = GetByName(movie.Name)?? throw new InvalidOperationException("Movie must be unique");
             //{
             //    error = "Movie must be unique";
             //    return null;
             //};
 
-            //TOOO: Generalize errors
-            return AddCore(movie);
+            // Generalize errors
+            try
+            {
+                return AddCore(movie);
+            } catch (Exception e)
+            {
+                //Throwing a new exception
+                throw new InvalidOperationException("Add Failed", e);
+            };
         }
 
        
@@ -78,9 +90,15 @@ namespace MovieLibrary
             if (id <=0)
                 throw new ArgumentOutOfRangeException(nameof(id), "Id must be greater than zero");
 
-            //TOOO: Generalize errors
-            DeleteCore(id);
-
+            // Generalize errors
+            try
+            {
+                DeleteCore(id);
+            } catch (Exception e)
+            {
+                //Throwing a new exception
+                throw new InvalidOperationException("Delete Failed", e);
+            };
         }
 
         //Use IEnumerable<T> for readonly lists of items
@@ -90,8 +108,16 @@ namespace MovieLibrary
             // object value = null;
             //  value.ToString();
 
-            //TOOO: Generalize errors
-            return GetAllCore();
+            // Generalize errors
+           
+            try
+            {
+                return GetAllCore();
+            } catch (Exception e)
+            {
+                //Throwing a new exception
+                throw new InvalidOperationException("GetAll Failed", e);
+            };
         }
 
         public Movie Get ( int id )
@@ -100,8 +126,16 @@ namespace MovieLibrary
             if (id <=0)
                 throw new ArgumentOutOfRangeException(nameof(id), "Id must be greater than zero");
 
-            //TOOO: Generalize errors
-            return GetByIdCore(id);
+            // Generalize errors
+          
+            try
+            {
+                return GetByIdCore(id);
+            } catch (Exception e)
+            {
+                //Throwing a new exception
+                throw new InvalidOperationException("Get Failed", e);
+            };
         }
         public void Update ( int id, Movie movie )
         {
@@ -114,7 +148,7 @@ namespace MovieLibrary
 
 
             //Movie is valid
-            new ObjectValidator().ValidateFullObject(movie);
+             ObjectValidator.ValidateFullObject(movie);
             //var results = new ObjectValidator().TryValidateFullObject(movie);
             //if (results.Count() > 0)
             //{
@@ -130,9 +164,20 @@ namespace MovieLibrary
             if (existing != null && existing.Id != id)
                throw new InvalidOperationException("Movie must be unique");
 
-            //TOOO: Generalize errors
-            UpdateCore(id, movie);
+            // Generalize errors
+            try
+            {
+                UpdateCore(id, movie);
+            } catch (Exception e)
+            {
+                //Throwing a new exception
+                throw new InvalidOperationException("Update Failed", e);
+            };
         }
+
+        /// <summary>Adds a movie to the database.</summary>
+        /// <param name="movie"> The movie to add.</param>
+        /// <returns>The added movie.</returns>
         protected abstract Movie AddCore ( Movie movie );
 
         protected abstract void DeleteCore ( int id );

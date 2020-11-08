@@ -117,8 +117,9 @@ namespace MovieLibrary.WindformsHost
             //movie.Age =10;
 
             //TOO : Fix type Validate
-            var ValidationResults = new ObjectValidator().TryValidateFullObject(movie);
-            if(ValidationResults.Count() > 0)
+           // var ValidationResults = new ObjectValidator().TryValidateFullObject(movie);
+            var ValidationResults = ObjectValidator.TryValidateFullObject(movie);
+            if (ValidationResults.Count() > 0)
             {
                 //TOO : Fix this later using String.Join
                 var builder = new System.Text.StringBuilder();
