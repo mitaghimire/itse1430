@@ -8,8 +8,15 @@ namespace MovieLibrary
     {
         //Make static because it does not reference any instance data
         //Nor does it really need to be created
-        public static void Seed (IMovieDatabase database)
+        //Converting to an extension method
+        //1. Must be in a static class (public or internal)
+        //2. Must accept as a first parameter the type to extend
+        //3. First parameter must be preceded by keyword 'this 
+        //  4. (Optional) Change first parameter to `source`
+        public static void Seed ( this IMovieDatabase source )   //database.Seed()
         {
+            //Extension methods - DO NOT check for null
+
             //Not Needed here - clear all item from list
             //_movies.Clear(); 
 
@@ -42,12 +49,9 @@ namespace MovieLibrary
 
             };
 
-            // TOOO: Fix error handling
-            //foreach (var item in items)
-            //   database.Add(item, out var error);
+            //TODO: Fix error handling
             foreach (var item in items)
-                database.Add(item);
-
+                source.Add(item);
 
         }
     }
