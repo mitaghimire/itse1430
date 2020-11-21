@@ -131,6 +131,7 @@ namespace MovieLibrary.Sql
                     // Get typed value
                     //   Convert.ToInt32(row[#]) ::= Object to Int32
                     //   row[].ToString() ::= To a string [PREFERRED]
+
                     yield return new Movie() {
                         Id = Convert.ToInt32(row[0]),
                         Name = row["name"].ToString(),
@@ -246,6 +247,24 @@ namespace MovieLibrary.Sql
             };
         }
 
+        // Dataset vs DataReader (buffered vs streamed)
+        // 
+        //  Dataset:
+        //   A: Disconnected from database
+        //   A: Discoverable - column names, types, nullable and relationships
+        //   A: Pre-defined business objects (DataRow)
+        //   A: Modifiable
+        //   D: High memory overhead (< 1K)
+        //  
+        //  Data readers:
+        //   A: No memory overhead
+        //   A: Fast
+        //   A: Store in your business objects
+        //   D: Must know the data
+        //   D: Cannot modify data
+        //
+        // Use a data reader unless you absolutely need a feature not available in a data reader
+        // Use a dataset when you need very small sets of fixed data where no business logic is needed
 
 
         private SqlConnection OpenConnection ()
