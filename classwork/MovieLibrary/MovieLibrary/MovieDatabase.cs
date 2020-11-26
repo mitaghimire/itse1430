@@ -182,16 +182,24 @@ namespace MovieLibrary
 
         protected abstract void DeleteCore ( int id );
 
-        protected virtual Movie GetByName ( string name )
-        {
-            foreach (var movie in GetAll())
-            {
-                if (String.Compare(movie.Name, name, true) == 0)
-                    return movie;
-            };
+        /// <summary>Find a movie by name.</summary>
+        /// <param name="name">The movie to find.</param>
+        /// <returns>The movie, if found.</returns>
+        /// </remarks>
+       // Expression body method => E;
+        protected virtual Movie GetByName ( string name ) => GetAll().FirstOrDefault(x => String.Compare(x.Name, name, true) == 0);
 
-            return null;
-        }
+        //protected virtual Movie GetByName ( string name )
+        //{
+           
+        //    //foreach (var movie in GetAll())
+        //    //{
+        //    //    if (String.Compare(movie.Name, name, true) == 0)
+        //    //        return movie;
+        //    //};
+
+        //    //return null;
+        //}
 
         protected abstract IEnumerable<Movie> GetAllCore ();
 
@@ -236,4 +244,19 @@ namespace MovieLibrary
     // Lambda expression / anonymous methods
     //    Method that has no name
     //    parameters => expression
+    // parameters => { statement * } 
+    //parameter types are inferred
+    // If you need more than 1 parameter or no parameter use empty parens
+    //
+    // Expression bodies (limited to methods, constructors, operators, properties)
+    // method => E;
+    // T property { get => E; set => S; }
+    // T property => E; 
+    // Replace a method body that has a single return statement (compiler rewrites to regular method)
+
+    // LINQ syntax
+    // from x in IEnumerable<T>
+    // [where lambda expression ]
+    // [orderby member, member]
+    // select E
 }

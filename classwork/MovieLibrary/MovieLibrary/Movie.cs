@@ -59,8 +59,8 @@ namespace MovieLibrary
         // 3. Allowed to have different "readonly" values for each instance
         // 4. Is not baked into source code
         public readonly int MaximumDescriptionLength = 200;
-        
-       
+
+
         //Not a field because:
         //1. can not write
         //2. calculated
@@ -71,14 +71,7 @@ namespace MovieLibrary
         //2. complex syntax compared to fields
         //3. Get/Set is in name
         //public int GetAge () { }
-        public int Age
-        {
-            //read only property
-            //Calculated property
-            get { return DateTime.Now.Year - ReleaseYear; }
-            //set { }
-
-        }
+        public int Age => DateTime.Now.Year - ReleaseYear;
 
         // Mixed accessibility - using a different access on either getter or setter
         // 1. only 1 method can have access modifier
@@ -93,42 +86,47 @@ namespace MovieLibrary
         // Properties returing arrays or strings should not return null
         public string Name
         {
-            //getter T get _Name ()
-            get 
-            {
-                // Coalesce - scanning a series of expressions looking for non-Null
-                // E1 ?? E2
-                // if E1 is not null then return E1
-                // else return E2
-                //if (_name ==null)
-                //    return "";
-
-                //return _name;
-                return _name ?? "";
-
-
-            }
-            //setter void set_Name ( T value ) 
-            set 
-            {
-                _name = value;
-            }
+            //Expression body
+            get => _name ?? "";
+            set => _name = value;
         }
+
+        //public string Name
+        //{
+        //    //getter T get _Name ()
+        //    get {
+        //        // Coalesce - scanning a series of expressions looking for non-Null
+        //        // E1 ?? E2
+        //        // if E1 is not null then return E1
+        //        // else return E2
+        //        //if (_name ==null)
+        //        //    return "";
+
+        //        //return _name;
+        //        return _name ?? "";
+        //    }
+
+        //    //setter void set_Name ( T value ) 
+        //    set {
+        //        _name = value;
+        //    }
+        //}
+
         private string _name = "";
 
         /// <summary>Gets or Sets the movie description./// </summary>
         public string Description
         {
-            get { return _description ?? ""; }
-            set { _description = value; }
+            get => _description ?? "";
+            set => _description = value;
 
         }
         private string _description = "";
 
         public string Rating
         {
-            get { return _rating ?? ""; }
-            set { _rating = value; }
+            get => _rating ?? "";
+            set => _rating = value;
 
         }
         private string _rating;
@@ -161,8 +159,8 @@ namespace MovieLibrary
 
         /// <summary>Validates the movie instance.</summary>
         /// <returns> The error message, if any.</returns>
-       // public string Validate(/*Movie this */)
-       // {
+        // public string Validate(/*Movie this */)
+        // {
         //    //this is reference to current instance
         //    //rarely needed
         //    //var name = this.Name;
@@ -176,25 +174,23 @@ namespace MovieLibrary
         //    // this.Nmae = Name; //CORRECT
         //    // 2. passing the entire object to another method (only really valid case)
 
-            //Name ir required
-            //if (String.IsNullOrEmpty(Name)) //this.Name
-               // return "Name is require";
+        //Name ir required
+        //if (String.IsNullOrEmpty(Name)) //this.Name
+        // return "Name is require";
 
-            //Run lenght must be >= 0
-            //if (RunLength <= 0)
-                //return "Run Length must be greater than or equal to 0";
+        //Run lenght must be >= 0
+        //if (RunLength <= 0)
+        //return "Run Length must be greater than or equal to 0";
 
-            //Release year must be >= 1900
-            //if (ReleaseYear< 1900)
-                //return "Release Year must be at least 1900";
+        //Release year must be >= 1900
+        //if (ReleaseYear< 1900)
+        //return "Release Year must be at least 1900";
 
-            //return null;
-       // }
+        //return null;
+        // }
 
-    public override string ToString (/* this */)   //instane.ToString()
-    {
-        return Name;
-    }
+        public override string ToString (/* this */) => Name;  //instane.ToString()
+    
 
     public IEnumerable<ValidationResult> Validate ( ValidationContext validationContext )
         {

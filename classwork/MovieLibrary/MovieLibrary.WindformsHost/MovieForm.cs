@@ -62,7 +62,7 @@ namespace MovieLibrary.WindformsHost
             {
                 _txtName.Text = Movie.Name;
                 _txtDescription.Text = Movie.Description;
-                _comboRating.SelectedText = Movie.Rating;
+                _comboRating.Text = Movie.Rating;
                 _chkClassic.Checked = Movie.IsClassic;
                 _txtRunLength.Text = Movie.RunLength.ToString();
                 _txtReleaseYear.Text = Movie.ReleaseYear.ToString();
@@ -102,7 +102,7 @@ namespace MovieLibrary.WindformsHost
             var movie = new Movie();
             movie.Name = _txtName.Text;
             movie.Description = _txtDescription.Text;
-            movie.Rating = _comboRating.SelectedText;
+            movie.Rating = _comboRating.Text;
             movie.IsClassic = _chkClassic.Checked;
 
             movie.RunLength = ReadAsInt32(_txtRunLength);
@@ -110,7 +110,7 @@ namespace MovieLibrary.WindformsHost
 
             //Using a constant
             // 1. Type name, not instance
-            var nameLength = Movie.MaximumNameLength; //50
+            var description = Movie.MaximumDescriptionLength; //50
             // var nameLength = 50;
 
             //Won't compile
@@ -122,14 +122,15 @@ namespace MovieLibrary.WindformsHost
             if (ValidationResults.Count() > 0)
             {
                 //TOO : Fix this later using String.Join
-                var builder = new System.Text.StringBuilder();
-                foreach(var result in ValidationResults)
-                {
-                   builder.AppendLine(result.ErrorMessage);
-                };
-
+                //var builder = new System.Text.StringBuilder();
+                //foreach(var result in ValidationResults)
+                //{
+                //   builder.AppendLine(result.ErrorMessage);
+                //};
+                var error = String.Join(Environment.NewLine, ValidationResults.Select(x => x.ErrorMessage));
+                     
                 //Show errormessage
-                MessageBox.Show(this, builder.ToString(), "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, error, "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 DialogResult = DialogResult.None;
                 return;
 
@@ -139,7 +140,7 @@ namespace MovieLibrary.WindformsHost
             Close();
         }
 
-        private int ReadAsInt32(Control control)
+        private int ReadAsInt32 ( Control control )
         {
             var text = control.Text;
 
@@ -150,10 +151,6 @@ namespace MovieLibrary.WindformsHost
 
         }
 
-        private void MovieForm_Load ( object sender, EventArgs e )
-        {
-
-        }
 
         private void OnValidatedName ( object sender, CancelEventArgs e )
         {
