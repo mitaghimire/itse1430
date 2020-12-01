@@ -220,7 +220,7 @@ namespace MovieLibrary.WindformsHost
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add Movie";
-            this.Load += new System.EventHandler(this.MovieForm_Load);
+            //this.Load += new System.EventHandler(this.MovieForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this._errors)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
