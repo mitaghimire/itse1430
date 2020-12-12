@@ -36,7 +36,7 @@ namespace Nile.Windows
             Close();
         }
 
-        private bool IsProductDuplicate(Product product)
+        private bool IsDuplicate(CharacterRoster character)
         {
             IEnumerable<Product> lstProduct = _database.GetAll();
             foreach(Product p in lstProduct)

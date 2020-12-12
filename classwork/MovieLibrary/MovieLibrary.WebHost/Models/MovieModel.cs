@@ -64,6 +64,7 @@ namespace MovieLibrary.WebHost.Models
 
         public string Rating { get; set; }
 
+        //[DisplayName("Run Length")]
         [Range(0, Int32.MaxValue, ErrorMessage = "Run length must be greater than or equal to 0.")]
         public int RunLength { get; set; }
 

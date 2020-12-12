@@ -26,7 +26,9 @@ namespace MovieLibrary.WebHost.Controllers
             var movies = _database.GetAll();
 
             // IEnumerable<MovieModel> model =
-            var model = movies.Select(x => new MovieModel(x));
+            var model = movies.Select(x => new MovieModel(x))
+                              .OrderBy(x => x.Name);
+
             return View("List", model);   
         }
 
@@ -56,17 +58,81 @@ namespace MovieLibrary.WebHost.Controllers
             //Check for model validation
             if (ModelState.IsValid)
             {
-                _database.Update(model.Id, model.ToMovie() );
+                try
+                {
+                    _database.Update(model.Id, model.ToMovie());
+
+                    return RedirectToAction(nameof(Details), new { id = model.Id });
+                } catch(Exception e)
+                {
+
+                    ModelState.AddModelError("", e.Message);
+
+                };
+               
 
             };
             return View(model);
         }
 
-        public ActionResult Test ( string name)
-        {
-            var result = $"Hello {name} it is currently {DateTime.Now}";
+        //GET: Create
+        public ActionResult Create ( ) =>  View (new MovieModel ());
+        
 
-            return Json(result, JsonRequestBehavior.AllowGet);
+        // POST; Create
+        [HttpPost]
+        public ActionResult Create ( MovieModel model )
+        {
+            //Check for model validation
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                 var movie = _database.Add(model.ToMovie());
+
+                    return RedirectToAction(nameof(Details), new { id = model.Id });
+                } catch (Exception e)
+                {
+
+                    ModelState.AddModelError("", e.Message);
+
+                };
+
+
+            };
+            return View(model);
+        }
+
+        //GET: Delete
+        public ActionResult Delete ( int id )
+        {
+            var movie = _database.Get(id);
+            if (movie == null)
+                return HttpNotFound(); //404
+            return View(new MovieModel(movie));
+        }
+
+        // POST; Delete
+        [HttpPost]
+        public ActionResult Delete ( MovieModel model )
+        {
+          
+            
+                try
+                {
+                    _database.Delete(model.Id);
+
+                    return RedirectToAction(nameof(Index));
+                } catch (Exception e)
+                {
+
+                    ModelState.AddModelError("", e.Message);
+
+                };
+
+
+            
+            return View(model);
         }
 
         private readonly IMovieDatabase _database;
